@@ -1,30 +1,91 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dock It</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Rancho&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        body { font-family: Lato, sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: Rancho, cursive; }
-        h1 { font-size: 5em; margin-bottom: 0; text-shadow: 0 .2rem .5rem var(--blue); }
-        .bg-black { background-color: #232323; border-bottom: 5px solid var(--blue);}
+<?php
+include 'includes/header.php';
+?>
 
-    </style>
-</head>
-<body class="vh-100">
-<div class="d-flex align-items-start flex-column h-100">
+    <title>The FOOD Database</title>
 
-    <div class="text-center sticky-top shadow-lg p-2 w-100 text-light bg-black">
-        <h1>Dock It</h1>
-        <a href="phpinfo.php" target="content_frame" class="px-2">PHP Info</a> |
-        <a href="world.php" target="content_frame" class="px-2">The World</a>
-    </div>
-    <iframe src="phpinfo.php" name="content_frame" class="w-100 flex-grow-1 border-0"></iframe>
-</div>
-</body>
-</html>
+<?php
+require_once "includes/database.php";
+
+$sort = $_GET['sort'] ?? 'MenuItemName';
+
+$query = "SELECT FoodMenu.MenuItemName, FoodMenu.Ingredients, FoodMenu.Price, FoodMenu.MenuName
+FROM FoodMenu";
+
+$result = mysqli_query($db, $query) or die('Error loading food.');
+
+$item = mysqli_fetch_array($result, MYSQLI_ASSOC);
+?>
+
+    <h2 class="menu-header">Menu</h2>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="food-tab" data-bs-toggle="tab" data-bs-target="#food" type="button" role="tab" aria-controls="food" aria-selected="true">Foodrhareh</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="drinks-tab" data-bs-toggle="tab" data-bs-target="#drinks" type="button" role="tab" aria-controls="drinks" aria-selected="false">Drinks</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="dessert-tab" data-bs-toggle="tab" data-bs-target="#dessert" type="button" role="tab" aria-controls="dessert" aria-selected="false">Desserts</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="food" role="tabpanel" aria-labelledby="food-tab">
+                <?php
+                $result = mysqli_query($db, $query) or die('Error: ' . mysqli_error($db));
+                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    if ($row['MenuName'] == 'food'){
+
+                        ?>
+                        <section class="menu-item">
+                            <h3><?=$row['MenuItemName'] ?></h3>
+                            <p><?=$row['Ingredients'] ?></p>
+                            <p>$<?=$row['Price'] ?></p>
+                            <button class="buy-juice-button"><a href="food-items.php">Buy Juice</a></button>
+                        </section>
+
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+            <div class="tab-pane fade" id="drinks" role="tabpanel" aria-labelledby="drinks-tab"><?php
+                $result = mysqli_query($db, $query) or die('Error: ' . mysqli_error($db));
+                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    if ($row['MenuName'] == 'juices'){
+                        ?>
+                        <section class="menu-item">
+                            <h3><?=$row['MenuItemName'] ?></h3>
+                            <p><?=$row['Ingredients'] ?></p>
+                            <p>$<?=$row['Price'] ?></p>
+                            <button class="buy-juice-button"><a href="food-items.php">Buy Juice</a></button>
+                        </section>
+
+                        <?php
+                    }
+                }
+                ?></div>
+            <div class="tab-pane fade" id="dessert" role="tabpanel" aria-labelledby="dessert-tab"><?php
+                $result = mysqli_query($db, $query) or die('Error: ' . mysqli_error($db));
+                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    if ($row['MenuName'] == 'desserts'){
+                        ?>
+                        <section class="menu-item">
+                            <h3><?=$row['MenuItemName'] ?></h3>
+                            <p><?=$row['Ingredients'] ?></p>
+                            <p>$<?=$row['Price'] ?></p>
+                            <button class="buy-juice-button"><a href="food-items.php">Buy Juice</a></button>
+                        </section>
+
+                        <?php
+                    }
+                }
+                ?></div>
+        </div>
+
+
+
+<?php
+include 'includes/footer.php';
+?>
