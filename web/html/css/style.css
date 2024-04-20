@@ -1,0 +1,273 @@
+:root {
+    --green: #A8E683;
+    --yellow: #FDF21C;
+    --bright-green: #ccffcc;
+    --orange: #FFD090;
+    --red: #E86245;
+    --white: #F9FCF3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+
+}
+/*Sign In/Sign Up page*/
+
+
+
+.out-of-stock-text {
+    color: rgb(150,150,150)
+}
+
+/*header*/
+.header-nav {
+    width: 1000px;
+    margin: auto;
+}
+.hero-image {
+    background-image: url('../images/header-juices.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+
+    margin: auto;
+    text-align: center;
+}
+
+/*nav bar*/
+.container {
+    display: flex;
+    width: 100%;
+gap: 1rem;
+    justify-content: end;
+    padding: 5px 20px;
+}
+
+.main-nav-item a {
+font-size: 2rem;
+    text-align: center;
+    display: inline-block;
+    padding: 25px;
+
+}
+
+.main-nav-item a:hover {
+    background-color: #eaeaea;
+}
+
+.main-nav-item a {
+    color: black;
+    text-decoration: none;
+}
+
+/*home page menu*/
+.menu-page {
+    position: relative;
+    width: 100%;
+    background-image: url('../images/menubackground.jpg'), linear-gradient(rgba(255,255,255, 1), #D8F1D3);
+    background-size: cover;
+
+}
+
+.food-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid rgba(0,0,0,0.5);
+    padding: 50px;
+    margin: auto;
+    width: 65%;
+    row-gap: 50px;
+    border-radius: 50px;
+
+    opacity: 1;
+    background-color: var(--white);
+
+}
+
+
+
+/*order form*/
+.order-container {
+    display: flex;
+    align-items: center;
+justify-content: space-around;
+}
+
+.select-a-juice-container, .build-your-own-container {
+    width: 40%;
+    border-radius: 20px;
+    background-color: var(--light-green);
+    padding: 20px 0;
+}
+
+.select-a-juice-container h2, .build-your-own-container h2 {
+    text-align: center;
+}
+
+.select-a-juice{
+display: grid;
+grid-template-columns: 40% 40%;
+    justify-content: space-around;
+}
+.select-a-juice-item {
+
+    text-align: center;
+    background-color: var(--white);
+margin-top: 10px;
+    border-radius: 20px;
+    padding: 5px;
+
+}
+
+.build-your-own {
+
+    display: grid;
+    grid-template-columns: 30% 30%;
+    justify-content: space-around;
+}
+.build-your-own-item {
+padding: 5px;
+    background-color: var(--light-green);
+    margin: 5px;
+}
+
+
+
+/*Sign in page*/
+/*entire signup/login section*/
+.auth-section{
+
+}
+
+/*login section*/
+.login-section {
+    border: 1px solid black;
+    margin: 50px auto 0;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.login-title {
+    text-align: center;
+}
+
+.btnSubmit {
+    margin-top: 25px;
+    width: 100%;
+    background: var(--green);
+}
+
+/*Inventory page*/
+.search-add-food-container {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 50px auto;
+    align-items: center;
+}
+table {
+    margin: auto;
+}
+th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+/*Home page menu tabs*/
+.nav-item .nav-link {
+color: black;
+
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: black;
+    border: none;
+    border-bottom: 5px solid var(--green);
+    font-weight: bold;
+}
+
+.tab-content>.tab-pane {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.menu-item {
+    font-size: 1.5rem;
+    width: 450px;
+    padding: 15px 4%;
+    border-radius: 20px;
+
+}
+.menu-item-header {
+    font-size: 2.25rem;
+    font-family: Impact, sans-serif;
+    text-transform: capitalize;
+}
+.menu-item-ingredients {
+    text-transform: capitalize;
+}
+.menu-item-price {
+
+}
+
+.menu-header {
+    text-align: center;
+    font-size: 4rem;
+    margin: 20px auto;
+}
+
+.buy-juice-button {
+    font-size: 1.5rem;
+    padding: 5px 20px;
+    text-align: center;
+    margin: auto;
+    border-radius: 50px;
+    background-color: green;
+
+    border: 3px solid black;
+}
+
+.buy-juice-button a {
+    text-decoration: none;
+    color: var(--bright-green);
+}
+
+.tab-content {
+    border: 1px solid black;
+    border-radius: 20px;
+    background-image: linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.8)), url('../images/juicy-roots-background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 65%;
+    margin: 70px auto;
+    box-shadow: 1px 3px 20px #000;
+}
+
+
+/* Display only the active items */
+.menu-item {
+    display: none;
+}
+
+.active .menu-item {
+    display: inline-block;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+}

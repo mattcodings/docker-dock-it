@@ -19,17 +19,18 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
     <h2 class="menu-header">Menu</h2>
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="food-tab" data-bs-toggle="tab" data-bs-target="#food" type="button" role="tab" aria-controls="food" aria-selected="true">Foodrhareh</button>
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item home-menu-tab display-6" role="presentation">
+                <button class="nav-link active" id="food-tab" data-bs-toggle="tab" data-bs-target="#food" type="button" role="tab" aria-controls="food" aria-selected="true">Food</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="drinks-tab" data-bs-toggle="tab" data-bs-target="#drinks" type="button" role="tab" aria-controls="drinks" aria-selected="false">Drinks</button>
+            <li class="nav-item home-menu-tab display-6" role="presentation">
+                <button class="nav-link" id="juices-tab" data-bs-toggle="tab" data-bs-target="#juices" type="button" role="tab" aria-controls="juices" aria-selected="false">Juices</button>
             </li>
-            <li class="nav-item" role="presentation">
+            <li class="nav-item home-menu-tab display-6" role="presentation">
                 <button class="nav-link" id="dessert-tab" data-bs-toggle="tab" data-bs-target="#dessert" type="button" role="tab" aria-controls="dessert" aria-selected="false">Desserts</button>
             </li>
         </ul>
+
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="food" role="tabpanel" aria-labelledby="food-tab">
                 <?php
@@ -38,11 +39,11 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     if ($row['MenuName'] == 'food'){
 
                         ?>
-                        <section class="menu-item">
-                            <h3><?=$row['MenuItemName'] ?></h3>
-                            <p><?=$row['Ingredients'] ?></p>
-                            <p>$<?=$row['Price'] ?></p>
-                            <button class="buy-juice-button"><a href="food-items.php">Buy Juice</a></button>
+                        <section class="menu-item my-5">
+                            <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
+                            <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
+                            <p class="menu-item-price">$<?=$row['Price'] ?></p>
+                            <button class="buy-juice-button"><a href="food-items.php">Add To Cart</a></button>
                         </section>
 
                         <?php
@@ -50,16 +51,16 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 }
                 ?>
             </div>
-            <div class="tab-pane fade" id="drinks" role="tabpanel" aria-labelledby="drinks-tab"><?php
+            <div class="tab-pane fade" id="juices" role="tabpanel" aria-labelledby="juices-tab"><?php
                 $result = mysqli_query($db, $query) or die('Error: ' . mysqli_error($db));
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     if ($row['MenuName'] == 'juices'){
                         ?>
-                        <section class="menu-item">
-                            <h3><?=$row['MenuItemName'] ?></h3>
-                            <p><?=$row['Ingredients'] ?></p>
-                            <p>$<?=$row['Price'] ?></p>
-                            <button class="buy-juice-button"><a href="food-items.php">Buy Juice</a></button>
+                        <section class="menu-item my-5">
+                            <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
+                            <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
+                            <p class="menu-item-price">$<?=$row['Price'] ?></p>
+                            <button class="buy-juice-button"><a href="food-items.php">Add To Cart</a></button>
                         </section>
 
                         <?php
@@ -71,11 +72,11 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     if ($row['MenuName'] == 'desserts'){
                         ?>
-                        <section class="menu-item">
-                            <h3><?=$row['MenuItemName'] ?></h3>
-                            <p><?=$row['Ingredients'] ?></p>
-                            <p>$<?=$row['Price'] ?></p>
-                            <button class="buy-juice-button"><a href="food-items.php">Buy Juice</a></button>
+                        <section class="menu-item my-5">
+                            <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
+                            <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
+                            <p class="menu-item-price">$<?=$row['Price'] ?></p>
+                            <button class="buy-juice-button"><a href="food-items.php">Add To Cart</a></button>
                         </section>
 
                         <?php
@@ -83,6 +84,7 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 }
                 ?></div>
         </div>
+
 
 
 
