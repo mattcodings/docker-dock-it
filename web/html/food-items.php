@@ -5,9 +5,9 @@ $sort = $_GET['sort'] ?? 'Name';
 $queryMenu = "SELECT FoodMenu.MenuItemName, FoodMenu.Ingredients, FoodMenu.Price
 FROM FoodMenu";
 
-$resultMenu = mysqli_query($db, $queryMenu) or die('Error loading food.');
+$selectItemMenu = mysqli_query($db, $queryMenu) or die('Error loading food.');
 
-$menuItem = mysqli_fetch_array($resultMenu, MYSQLI_ASSOC);
+$menuItem = mysqli_fetch_array($selectItemMenu, MYSQLI_ASSOC);
 
 $query = "SELECT Food.FoodID, Food.Name, Food.FoodCategoryID, Food.FoodQuantity
 FROM Food
@@ -34,7 +34,7 @@ $formIsValid = true;
 
 //if($formIsValid)
 //    echo 'Array: ' . implode(' ', $choices);
-foreach ($choices as &$food){
+foreach ($choices as $food){
     $query = "UPDATE Food SET FoodQuantity = FoodQuantity - 1 WHERE Name = '$food'";
     $stmt = mysqli_prepare($db, $query) or die('Invalid query');
     mysqli_stmt_execute($stmt);
@@ -47,6 +47,7 @@ foreach ($menuChoices as $orders){
         $query = "UPDATE Food SET FoodQuantity = FoodQuantity - 1 WHERE Name = '$foodItems'";
         $stmt = mysqli_prepare($db, $query) or die('Invalid query');
         mysqli_stmt_execute($stmt);
+        echo implode(' ', $menuChoices);
     }
 
 
@@ -61,11 +62,11 @@ foreach ($menuChoices as $orders){
                     <section class="select-a-juice">
 
                         <?php
-                        $resultMenu = mysqli_query($db, $queryMenu) or die('Error: ' . mysqli_error($db));
-                        while($row = mysqli_fetch_array($resultMenu, MYSQLI_ASSOC)) {
+                        $selectItemMenu = mysqli_query($db, $queryMenu) or die('Error: ' . mysqli_error($db));
+                        while($row = mysqli_fetch_array($selectItemMenu, MYSQLI_ASSOC)) {
                             $ingredients = $row['Ingredients'];
-                            $ingredients = ucwords(implode(', ', preg_split('/[\s]+/', $ingredients)));
-
+                            $ingredients = ucwords($ingredients);
+//                            $ingredients = ucwords(implode(', ', preg_split('/[\s]+/', $ingredients)));
                         ?>
                             <section class="select-a-juice-item">
                                 <section>
@@ -77,6 +78,7 @@ foreach ($menuChoices as $orders){
                             </section>
                             <?php
                         }
+                        var_dump(implode($choices));
                             ?>
 
                     </section>

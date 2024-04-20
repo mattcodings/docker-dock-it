@@ -31,9 +31,9 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
             <table id="food-items-table" class="data-table">
                 <thead>
                 <tr>
-                    <th class="food-name-th"><a href="?sort=Name">Name</a></th>
-                    <th class="food-category-th"><a href="?sort=Category">Category</a></th>
-                    <th class="food-quantity-th">Quantity</th>
+                    <th class="food-name-th"><a href="?sort=Name" class="inventory-sort-column-name">Name <i class="fas fa-sort-down sort-arrow"></i></a></th>
+                    <th class="food-category-th"><a href="?sort=Category" class="inventory-sort-column-name">Category <i class="fas fa-sort-down sort-arrow"></i></a></th>
+                    <th class="food-quantity-th inventory-sort-column-name">Quantity</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,7 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     ?>
                     <tr class="each-data">
-                        <td class="food-name fw-bold fs-2"><a href="item.php?foodid=<?= $row['FoodID'] ?>"><?=$row['Name'] ?></a></td>
+                        <td class="food-name fw-bold fs-2"><a href="item.php?foodid=<?= $row['FoodID'] ?>"><?=$row['Name'] ?> <i class="fas fa-pen"></i></a></td>
                         <td class="food-category fw-bold fs-2"><?= $row['Category'] ?></td>
                         <td class="food-quantity fw-bold fs-2"><?= $row['FoodQuantity'] ?></td>
                     </tr>

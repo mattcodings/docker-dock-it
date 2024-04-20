@@ -1,6 +1,7 @@
 <?php
 session_name('php_final');
 session_start();
+
 include "includes/database.php";
 ?>
 <!doctype html>

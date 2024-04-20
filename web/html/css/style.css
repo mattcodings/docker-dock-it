@@ -95,12 +95,20 @@ font-size: 2rem;
 /*order form*/
 .order-container {
     display: flex;
-    align-items: center;
+    align-items: start;
 justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.select-a-juice-container {
+    width: 600px;
+}
+
+.build-your-own-container {
+    width: 500px;
 }
 
 .select-a-juice-container, .build-your-own-container {
-    width: 40%;
     border-radius: 20px;
     background-color: var(--light-green);
     padding: 20px 0;
@@ -270,4 +278,36 @@ color: black;
 .checkbox {
     width: 20px;
     height: 20px;
+}
+
+td {
+    font-size: 2em !important;
+}
+
+.inventory-sort-column-name {
+    text-decoration: none;
+    color: black;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.sort-arrow {
+    font-size: 1em;
+    padding: 5px;
+}
+
+.food-name a {
+    text-decoration: none;
+    color: black;
+}
+
+.add-menu-item-name {
+    text-align: center;
+}
+
+.add-menu-item-fruit-section, .add-menu-item-vegetables-section, .add-menu-item-other-section {
+width: 25%;
+    margin: auto;
+    text-align: center;
 }

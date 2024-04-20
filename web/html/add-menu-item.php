@@ -68,20 +68,21 @@ VALUES
 mysqli_close($db);
 ?>
 <form method="post"
-<p class="edit-line">
+<p class="add-menu-item-name">
     <label for="menuItemName">Name: </label>
     <input type="text" id="menuItemName" name="menuItemName">
     <label for="menuItemName" class="error"><?= $nameError ?? '' ?></label>
 </p>
+<div class="add-menu-item-fruit-section">
 <h2>Fruits</h2>
-<div class="flex w-50 gap-5">
+<div class="flex gap-5">
 <?php
 while($row = mysqli_fetch_array($foodResult1, MYSQLI_ASSOC)){
 if ($row['FoodCategoryID'] == 1){
 
         ?>
-        <label for='ingredients' class="p-2">
-    <input type="checkbox" class="mb-5 fs-2 checkbox" id='ingredients' name="ingredients[]" value=<?=$row['Name']?>><span class="fs-2 p-2"><?=$row['Name']?></span></label>
+        <label class="p-2">
+    <input type="checkbox" class="mb-5 fs-2 checkbox" name="ingredients[]" value=<?=$row['Name']?>><span class="fs-2 p-2"><?=$row['Name']?></span></label>
         <?php
 
 }
@@ -89,8 +90,10 @@ if ($row['FoodCategoryID'] == 1){
 
 ?>
 </div>
+</div>
+<div class="add-menu-item-vegetables-section">
 <h2>Vegetables</h2>
-<div class="flex w-50 gap-5">
+<div class="flex gap-5">
     <?php
 
 
@@ -98,8 +101,8 @@ if ($row['FoodCategoryID'] == 1){
         if ($row['FoodCategoryID'] == 2){
 
             ?>
-            <label for='ingredients' class="p-2">
-                <input type="checkbox" class="mb-5 fs-2 checkbox" id='ingredients' name="ingredients[]" value=<?=$row['Name']?>><span class="fs-2 p-2"><?=$row['Name']?></span></label>
+            <label class="p-2">
+                <input type="checkbox" class="mb-5 fs-2 checkbox" name="ingredients[]" value=<?=$row['Name']?>><span class="fs-2 p-2"><?=$row['Name']?></span></label>
             <?php
 
         }
@@ -107,21 +110,24 @@ if ($row['FoodCategoryID'] == 1){
 
     ?>
 </div>
+</div>
+<div class="add-menu-item-other-section">
 <h2>Other</h2>
-<div class="flex w-50 gap-5">
+<div class="flex gap-5">
     <?php
     while($row = mysqli_fetch_array($foodResult3, MYSQLI_ASSOC)){
         if ($row['FoodCategoryID'] == 3){
 
             ?>
-            <label for='ingredients' class="p-2">
-                <input type="checkbox" class="mb-5 fs-2 checkbox" id='ingredients' name="ingredients[]" value=<?=$row['Name']?>><span class="fs-2 p-2"><?=$row['Name']?></span></label>
+            <label class="p-2">
+                <input type="checkbox" class="mb-5 fs-2 checkbox" name="ingredients[]" value=<?=$row['Name']?>><span class="fs-2 p-2"><?=$row['Name']?></span></label>
             <?php
 
         }
     }
 
     ?>
+</div>
 </div>
 <!--<p class="edit-line">-->
 <!--    <label for="ingredients">Ingredients: </label>-->

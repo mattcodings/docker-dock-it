@@ -13,7 +13,7 @@ $search = $_GET['search'] ?? '';
 
 $search = mysqli_real_escape_string($db, $search);
 
-$query = "SELECT Food.FoodID, Food.Name, FoodCategory.Category
+$query = "SELECT Food.FoodID, Food.Name, FoodCategory.Category, Food.FoodQuantity
 FROM `Food`
 LEFT JOIN FoodCategory ON Food.FoodCategoryID = FoodCategory.FoodCategoryID
 WHERE Name LIKE '%$search%'
@@ -32,6 +32,7 @@ echo "<p>$count foods found.";
     <tr>
         <th><a href="food-items.php?sort=Name">Name</a></th>
         <th><a href="?sort=Category">Category</a></th>
+        <th><a href="?sort=FoodQuantity">Quantity</a></th>
     </tr>
     </thead>
     <tbody>
@@ -42,6 +43,7 @@ echo "<p>$count foods found.";
         <tr>
             <td class="food-name"><a href="item.php?id=<?= $row['FoodID'] ?>"><?=$row['Name'] ?></a></td>
             <td><?= $row['Category'] ?></td>
+            <td><?= $row['FoodQuantity'] ?></td>
         </tr>
         <?php
     }
