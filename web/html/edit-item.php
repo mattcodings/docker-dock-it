@@ -1,10 +1,6 @@
-<link rel="stylesheet" href="css/style.css">
 <?php
 include 'includes/header.php';
-//session_name('php_final');
-//session_start();
-//$_SESSION['csrf_token'] = $_SESSION['csrf_token'] ?? md5(uniqid());
-require_once 'includes/database.php';
+
 $id = $_GET['id'] ?? '';
 
 $id = intval($id);
@@ -18,6 +14,7 @@ $result = mysqli_query($db, $query) or die('Error in query');
 
 $foodItem = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
+<link rel="stylesheet" href="css/style.css">
 <div class="edit-form">
 <h1>Edit Food</h1>
 <?php
@@ -55,7 +52,6 @@ WHERE `Food`.`FoodID` = ?";
 
         header('Location: item.php?id=' . $foodId);
     }
-
 }
 ?>
 
@@ -81,6 +77,6 @@ WHERE `Food`.`FoodID` = ?";
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
         <input type="hidden" name="foodId" value="<?= $foodItem['FoodID'] ?>">
         <button type="submit" name="edit" class="btn btn-save">Save Changes</button>
-        <button class="back-to-food"><a href="food-items.php">Back to Food</a></button>
+        <button class="back-to-food"><a href="inventory.php">Back to Food</a></button>
 </form>
 </div>

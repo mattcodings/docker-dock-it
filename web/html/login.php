@@ -28,29 +28,23 @@ include 'includes/header.php';
                             // password was correct, store the login in the session
                             $_SESSION['foodAuthUser']['email'] = $email;
                             $_SESSION['foodAuthUser']['role'] = $role;
-
                             // redirect to the secure page
                             header('Location: index.php');
                         }
                     }
-
                     // email / password was incorrect
                     echo '<div class="alert alert-danger">Email or password was incorrect.</div>';
                 }
-
                 // logout and redirect to login page
                 if (isset($_GET['logout'])) {
                     // remove session data
                     unset($_SESSION['foodAuthUser']);
-
                     // destroy the session (and cookie)
                     // session high-jacking can occur if session and cookie are not destroyed
                     session_destroy();
-
                     // redirect
                     header("Location: index.php");
                 }
-
                 ?>
                 <?php if (isset($_SESSION['foodAuthUser'])): ?>
                     <form method="get">
@@ -75,7 +69,6 @@ include 'includes/header.php';
             </div>
             <p>Don't have an account? <a href="sign-up.php">Sign Up Here</a></p>
         </div>
-
     </section>
 <?php
 include "includes/footer.php";

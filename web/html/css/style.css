@@ -5,6 +5,7 @@
     --orange: #FFD090;
     --red: #E86245;
     --white: #F9FCF3;
+    --blue: #0f3c4c;
 }
 
 * {
@@ -211,14 +212,6 @@ color: black;
     width: 90%;
     margin: auto;
 }
-
-.menu-item {
-    font-size: 1.5rem;
-    width: 450px;
-    padding: 15px 4%;
-    border-radius: 20px;
-
-}
 .menu-item-header {
     font-size: 2.25rem;
     font-family: Impact, sans-serif;
@@ -227,9 +220,7 @@ color: black;
 .menu-item-ingredients {
     text-transform: capitalize;
 }
-.menu-item-price {
 
-}
 
 .menu-header {
     text-align: center;
@@ -240,8 +231,7 @@ color: black;
 .buy-juice-button {
     font-size: 1.5rem;
     padding: 5px 20px;
-    text-align: center;
-    margin: auto;
+
     border-radius: 50px;
     background-color: green;
 
@@ -268,6 +258,11 @@ color: black;
 
 /* Display only the active items */
 .menu-item {
+    background: rgba(255,255,255,0.9);
+    font-size: 1.5rem;
+    width: 450px;
+    padding: 15px 4%;
+    height: 300px;
     display: none;
 }
 
@@ -306,8 +301,185 @@ td {
     text-align: center;
 }
 
+
+
+.cart-container-with-header, .build-your-own-container {
+    border: 5px solid black;
+    border-radius: 50px;
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.cart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+
+}
+
+.cart-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.cart-item {
+border-bottom: 5px solid #bbb;
+    width: 300px;
+    padding: 10px 0;
+}
+
+.purchase-btn {
+    padding: 20px;
+    border: 5px;
+    font-size: 2rem;
+}
+
+.purchase-total {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .add-menu-item-fruit-section, .add-menu-item-vegetables-section, .add-menu-item-other-section {
-width: 25%;
-    margin: auto;
+    width: 400px;
+    margin: 20px;
     text-align: center;
+    background: var(--green);
+    padding: 20px;
+    border-radius: 20px;
+}
+.menu-item-containers {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.add-menu-item-individual-ingredient {
+    font-size: 26px;
+    color: var(--black);
+
+
+}
+.add-menu-item-container-header {
+    color: var(--blue)
+}
+.add-menu-item-selection {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.add-menu-item-radio-icon i {
+    cursor: pointer;
+    color: #000;
+    border: 3px solid black;
+    font-size: 96px;
+    padding: 30px 50px 10px;
+    border-radius: 20px;
+}
+.add-menu-item-radio-icon i:hover {
+
+    color: var(--white);
+    background: var(--blue);
+}
+
+.add-menu-item-radio-icon-text {
+    font-size: 26px;
+    margin-top: 20px;
+    text-align: center;
+    display: block;
+
+}
+
+/* Change the icon when the radio is checked */
+.add-menu-item-radio-icon input:checked + i {
+    display: block;
+    width: 100%;
+    background: var(--blue);
+    border-color: var(--bright-green);
+    color: var(--bright-green); /* Change as needed */
+    /*content: "\f058"; !* Font Awesome checked icon *!*/
+}
+
+.add-menu-item-radio-icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.back-to-food-link{
+    text-decoration: none;
+    color: black;
+    border-radius: 20px;
+    border: 3px solid var(--green);
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+}
+.add-menu-item-button{
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+    border-radius: 20px;
+    border: 3px solid var(--green);
+    background: var(--blue);
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+}
+.add-food-to-storage-button{
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+    border-radius: 20px;
+    border: 3px solid var(--green);
+    background: var(--blue);
+    padding: 10px;
+    width: 250px;
+    text-align: center;
+}
+.add-menu-item-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap;
+}
+.price-input-label {
+    display: inline-block;
+}
+
+.add-item-form {
+    display: flex;
+    justify-content: center;
+}
+
+.inventory-buttons-container {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.edit-delete-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.edit-delete-item-button{
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+    border-radius: 20px;
+    border: 3px solid var(--green);
+    background: var(--blue);
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    margin-bottom: 20px;
 }

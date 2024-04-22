@@ -58,15 +58,17 @@ VALUES
 }
 mysqli_close($db);
 ?>
-<h1>Add Item</h1>
-<form method="post"
+
+<h1 class="text-center my-5">Add Item</h1>
+<div class="add-item-form">
+<form method="post">
 <p class="edit-line">
     <label for="name">Name: </label>
     <input type="text" id="name" name="name">
     <label for="name" class="error"><?= $nameError ?? '' ?></label>
 </p>
 
-<p class="edit-line">
+<p>
     <label for="food-category-id">Type of Food: </label>
     <select type="text" id="food-category-id" name="food-category-id">
         <option value="1" <?= $item['FoodCategoryID'] == 1 ? 'selected' : '' ?>>Fruit</option>
@@ -74,16 +76,18 @@ mysqli_close($db);
         <option value="3" <?= $item['FoodCategoryID'] == 3 ? 'selected' : '' ?>>Other</option>
     </select>
 </p>
-<p class="edit-line">
+<p>
     <label for="food-quantity">Quantity: </label>
     <input type="number" id="food-quantity" name="food-quantity">
     <label for="name" class="error"><?= $quantityError ?? '' ?></label>
 </p>
-<p class="edit-line">
+<p class="mb-5">
     <input type="hidden" name="foodId" value="<?= $item['FoodID'] ?>">
 </p>
-<p class="edit-line">
+<p class="add-menu-item-buttons-container">
     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-    <button class="btn btn-add btn-save" type="submit" name="add">Add Item</button>
-    <button class="back-to-food"><p><a href="food-items.php">Back to Food</a></p></button>
+    <button class="btn btn-add btn-save add-menu-item-button" type="submit" name="add">Add Item</button>
+    <a href="inventory.php" class="back-to-food-link">Back to Inventory</a>
 </p>
+</form>
+</div>

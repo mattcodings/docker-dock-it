@@ -23,8 +23,6 @@ $result = mysqli_query($db, $query) or die('Error loading food.');
 
 $count = mysqli_num_rows($result);
 echo "<p>$count foods found.";
-
-//$item = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
 
 <table id="food-items-table" class="data-table">
@@ -41,9 +39,9 @@ echo "<p>$count foods found.";
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         ?>
         <tr>
-            <td class="food-name"><a href="item.php?id=<?= $row['FoodID'] ?>"><?=$row['Name'] ?></a></td>
-            <td><?= $row['Category'] ?></td>
-            <td><?= $row['FoodQuantity'] ?></td>
+            <td class="food-name fw-bold fs-2"><a href="item.php?foodid=<?= $row['FoodID'] ?>"><?=$row['Name'] ?> <i class="fas fa-pen"></i></a></td>
+            <td class="food-category fw-bold fs-2"><?= $row['Category'] ?></td>
+            <td class="food-quantity fw-bold fs-2"><?= $row['FoodQuantity'] ?></td>
         </tr>
         <?php
     }

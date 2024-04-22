@@ -9,9 +9,7 @@ include 'includes/header.php';
         $email = $_POST['email'];
         $password = $_POST['password'];
         $role = 'user';
-
 //        validate email and password
-
 //        encrypt password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 

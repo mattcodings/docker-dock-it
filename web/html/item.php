@@ -12,8 +12,7 @@ $food = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
 <title><?=$food['Name']?> - The FOOD Database</title>
 
-
-<button class="back-to-food"><p><a href="food-items.php">Back to Food</a></p></button>
+<a href="inventory.php" class="back-to-food-link mt-5">Back to Inventory</a>
 <br>
 <br>
 <br>
@@ -35,7 +34,6 @@ if(mysqli_num_rows($result)):
         <th class="item-th">Name</th>
         <th class="item-th">Category</th>
         <th class="item-th">Quantity</th>
-        <th class="item-th">Color</th>
     </tr>
     </thead>
     <tbody>
@@ -45,9 +43,12 @@ if(mysqli_num_rows($result)):
 <td class='item-td'>{$row['Name']}</td>
 <td class='item-td'>{$row['Category']}</td>
 <td class='item-td'>{$row['FoodQuantity']}</td>
-<td class='edit-btn'><button class='edit-button'><a href='edit-item.php?id={$row['FoodID']}' class='edit-link'>Edit</a></button></td>
-<td class='delete-btn'><button class='delete-button'><a href='delete-item.php?id={$row['FoodID']}' class='delete-link'>Delete</a></button></td>
-</tr>";
+<div class='edit-delete-container'>
+<a href='edit-item.php?id={$row['FoodID']}' class='edit-delete-item-button'>Edit</a>
+<a href='delete-item.php?id={$row['FoodID']}' class='edit-delete-item-button'>Delete</a>
+</div>
+</tr>
+";
     }
     ?>
     </tbody>

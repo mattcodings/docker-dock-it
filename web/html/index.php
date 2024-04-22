@@ -39,12 +39,18 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     if ($row['MenuName'] == 'food'){
 
                         ?>
-                        <section class="menu-item my-5">
-                            <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
-                            <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
-                            <p class="menu-item-price">$<?=$row['Price'] ?></p>
-                            <button class="buy-juice-button"><a href="food-items.php">Add To Cart</a></button>
-                        </section>
+                        <form method="post" class="add-to-cart" action="addToCart.php">
+                            <section class="menu-item my-5">
+                                <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
+                                <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
+                                <p class="menu-item-price">$<?=$row['Price'] ?></p>
+                                <input type="hidden" name="name" value="<?=$row['MenuItemName'] ?>">
+                                <input type="hidden" name="price" value="<?=$row['Price'] ?>">
+                                <div class="text-center mx-auto">
+                                <input class="buy-juice-button" type="submit" value="Add To Cart" />
+                                </div>
+                            </section>
+                        </form>
 
                         <?php
                     }
@@ -56,12 +62,18 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     if ($row['MenuName'] == 'juices'){
                         ?>
+                        <form method="post" class="add-to-cart" action="addToCart.php">
                         <section class="menu-item my-5">
                             <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
                             <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
                             <p class="menu-item-price">$<?=$row['Price'] ?></p>
-                            <button class="buy-juice-button"><a href="food-items.php">Add To Cart</a></button>
+                            <input type="hidden" name="name" value="<?=$row['MenuItemName'] ?>">
+                            <input type="hidden" name="price" value="<?=$row['Price'] ?>">
+                            <div class="text-center">
+                                <input class="buy-juice-button" type="submit" value="Add To Cart" />
+                            </div>
                         </section>
+                            </form>
 
                         <?php
                     }
@@ -72,12 +84,18 @@ $item = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     if ($row['MenuName'] == 'desserts'){
                         ?>
-                        <section class="menu-item my-5">
-                            <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
-                            <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
-                            <p class="menu-item-price">$<?=$row['Price'] ?></p>
-                            <button class="buy-juice-button"><a href="food-items.php">Add To Cart</a></button>
-                        </section>
+                        <form method="post" class="add-to-cart" action="addToCart.php">
+                            <section class="menu-item my-5">
+                                <h3 class="menu-item-header"><?=$row['MenuItemName'] ?></h3>
+                                <p class="menu-item-ingredients"><?=$row['Ingredients'] ?></p>
+                                <p class="menu-item-price">$<?=$row['Price'] ?></p>
+                                <input type="hidden" name="name" value="<?=$row['MenuItemName'] ?>">
+                                <input type="hidden" name="price" value="<?=$row['Price'] ?>">
+                                <div class="text-center mx-auto">
+                                    <input class="buy-juice-button" type="submit" value="Add To Cart" />
+                                </div>
+                            </section>
+                        </form>
 
                         <?php
                     }

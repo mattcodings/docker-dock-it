@@ -1,125 +1,52 @@
 <?php
 require_once "includes/database.php";
 $sort = $_GET['sort'] ?? 'Name';
-
 $queryMenu = "SELECT FoodMenu.MenuItemName, FoodMenu.Ingredients, FoodMenu.Price
 FROM FoodMenu";
-
-$selectItemMenu = mysqli_query($db, $queryMenu) or die('Error loading food.');
-
-$menuItem = mysqli_fetch_array($selectItemMenu, MYSQLI_ASSOC);
-
 $query = "SELECT Food.FoodID, Food.Name, Food.FoodCategoryID, Food.FoodQuantity
 FROM Food
 ORDER BY $sort";
-
 $result = mysqli_query($db, $query) or die('Error loading food.');
-$item = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $choices = $_POST['choices'] ?? [];
-$menuChoices = $_POST['menuChoices'] ?? [];
-
 include 'includes/header.php';
-
 $formIsValid = true;
-
-//if (isset($_POST['purchase'])) {
-//    echo 'Array: ' . implode(" ", $choices);
-//}
-//    if (count($choices) < 1) {
-//
-//        $formIsValid = false;
-//        $error = 'Please select at least one ingredient';
-//        echo $error;
-//    }
-
-//if($formIsValid)
-//    echo 'Array: ' . implode(' ', $choices);
-foreach ($choices as $food){
+foreach ($choices as $food) {
     $query = "UPDATE Food SET FoodQuantity = FoodQuantity - 1 WHERE Name = '$food'";
     $stmt = mysqli_prepare($db, $query) or die('Invalid query');
     mysqli_stmt_execute($stmt);
     echo implode(' ', $choices);
 }
-foreach ($menuChoices as $orders){
-    $newString = $menuChoices[0];
-    $newArray = explode(';', $newString);
-    foreach($newArray as $foodItems) {
-        $query = "UPDATE Food SET FoodQuantity = FoodQuantity - 1 WHERE Name = '$foodItems'";
-        $stmt = mysqli_prepare($db, $query) or die('Invalid query');
-        mysqli_stmt_execute($stmt);
-        echo implode(' ', $menuChoices);
-    }
-
-
-}
-
-
 ?>
-                <form method="post">
-                    <section class="order-container">
-                    <section class="select-a-juice-container">
-                    <h2>Select a Juice</h2>
-                    <section class="select-a-juice">
+    <section class="build-your-own-container">
+        <form method="post" class="add-to-cart" action="addToCart.php">
 
-                        <?php
-                        $selectItemMenu = mysqli_query($db, $queryMenu) or die('Error: ' . mysqli_error($db));
-                        while($row = mysqli_fetch_array($selectItemMenu, MYSQLI_ASSOC)) {
-                            $ingredients = $row['Ingredients'];
-                            $ingredients = ucwords($ingredients);
-//                            $ingredients = ucwords(implode(', ', preg_split('/[\s]+/', $ingredients)));
-                        ?>
-                            <section class="select-a-juice-item">
-                                <section>
-                                <h3 class="select-a-juice-name"><?=$row['MenuItemName'] ?></h3>
-                                <p class="select-a-juice-ingredients"><?= $ingredients ?></p>
-                                <p class="select-a-juice-price">$<?=$row['Price'] ?></p>
-                                    <label class="build-your-own-item"><input type="checkbox" name="menuChoices[]" value=<?=$row['Ingredients']?>><?=$row['MenuItemName']?></label>
-                                </section>
-                            </section>
-                            <?php
-                        }
-                        var_dump(implode($choices));
-                            ?>
-
-                    </section>
-                    </section>
-<!--                        <p class="or-divider">Or</p>-->
-                    <section class="build-your-own-container">
-                    <h2>Build Your Own</h2>
-
-                    <section class="build-your-own">
-
-                        <?php
-//                        $result = @mysqli_query($db, $query) or die('Error in query: ' . mysqli_error($db));
-
-                        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                            if ($row['FoodCategoryID'] == 1 && $row['FoodQuantity'] > 0 || $row['FoodCategoryID'] == 2 && $row['FoodQuantity'] > 0){
-
-                                ?>
-                                <label class="build-your-own-item"><input type="checkbox" name="choices[]" value=<?=$row['Name']?>><?=$row['Name']?></label>
-                                <?php
-                            }
-                            else {
-
-
-                                ?>
-                                <span class=" build-your-own-item out-of-stock-text"><?=$row['Name']?> (out of stock)</span>
-                                <?php
-                            }
-                        }
+            <h2>Build Your Own Drink</h2>
+            <section class="build-your-own">
+                <?php
+                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    if ($row['FoodCategoryID'] == 1 && $row['FoodQuantity'] > 0 || $row['FoodCategoryID'] == 2 && $row['FoodQuantity'] > 0) {
 
                         ?>
-                    </section>
+                        <label class="add-menu-item-individual-ingredient"><input type="checkbox" name="choices[]" class="mb-5"
+                                                                  value=<?= $row['Name'] ?>><?= $row['Name'] ?></label>
 
-                    </section>
-                    </section>
-                    <button type="submit">Place Order</button>
-                </form>
+                        <?php
+                    } else {
+                        ?>
+                        <span class="add-menu-item-individual-ingredient out-of-stock-text mb-5"><?= $row['Name'] ?> (out of stock)</span>
+                        <?php
+                    }
+                }
+                ?>
+            </section>
+            <div class="text-center">
+                <button type="submit">Add To Cart</button>
+            </div>
+
+        </form>
+    </section>
     <pre>
-    <?php
-    print_r($_POST);
-    ?>
+<?php echo "hello" . var_dump($choices); ?>
 </pre>
-
 <?php
 
